@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <section class="create-film global-padding">
+        <form action='' method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit"> Create Film</button>
+            <a href="{% url 'film:list_view' %}">
+                <button type="button">Cancel</button>
+            </a>
+        </form>
+    </section>
+{% endblock %}

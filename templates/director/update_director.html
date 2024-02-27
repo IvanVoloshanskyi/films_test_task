@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <section class="update-director global-padding">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Update</button>
+            <a href="{% url 'film:director:director-list' %}">
+                <button type="button">Cancel</button>
+            </a>
+        </form>
+    </section>
+{% endblock %}

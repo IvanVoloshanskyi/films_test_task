@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section class="films-section global-padding">
+        {% include 'inc/_filter_form.html' %}
+
+
+
+        <div class="film-card">
+            {% for film in films %}
+                <div class="film-info">
+                    <div class="film-text">
+                        <p class="film-title">Film: {{ film.title }}</p>
+                        <p class="film-year">Year: {{ film.year }}</p>
+                        <p class="film-director">Director: {{ film.director }}</p>
+                        <ul class="actors-list">
+                            <p>Actors:</p>
+                            {% for actor in film.actors.all %}
+                                <li class="actor">
+                                    <span>{{ actor.name }}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="film-actions">
+                        <a href="{% url 'film:delete_view' film.pk %}" class="delete-film-link">
+                            <button class="delete-film-btn" type="submit">Delete Film</button>
+                        </a>
+                        <a href="{% url 'film:edit_view' film.pk %}" class="edit-film-link">
+                            <button class="edit-film-btn" type="submit">Edit Film</button>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        {% include 'inc/_paginator.html' %}
+    </section>
+{% endblock %}

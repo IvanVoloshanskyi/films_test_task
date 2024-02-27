@@ -1,0 +1,14 @@
+a {
+    text-decoration: none;
+    color: black;
+}
+
+body {
+    margin: 0;
+    font-family: Tahoma, sans-serif;
+}
+
+
+.global-padding {
+    padding: 3% 5% 5%;
+}

@@ -1,0 +1,23 @@
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?{% if request.GET.title %}title={{ request.GET.title }}&{% endif %}{% if request.GET.year %}year={{ request.GET.year }}&{% endif %}{% if request.GET.director %}director={{ request.GET.director }}&{% endif %}{% if request.GET.actors %}actors={{ request.GET.actors }}&{% endif %}{% if request.GET.name %}name={{ request.GET.name }}&{% endif %}page=1">&laquo;</a>
+            <a href="?{% if request.GET.title %}title={{ request.GET.title }}&{% endif %}{% if request.GET.year %}year={{ request.GET.year }}&{% endif %}{% if request.GET.director %}director={{ request.GET.director }}&{% endif %}{% if request.GET.actors %}actors={{ request.GET.actors }}&{% endif %}{% if request.GET.name %}name={{ request.GET.name }}&{% endif %}page={{ page_obj.previous_page_number }}">&#8249;</a>
+        {% else %}
+            <span class="disabled">&laquo;</span>
+            <span class="disabled">&#8249;</span>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?{% if request.GET.title %}title={{ request.GET.title }}&{% endif %}{% if request.GET.year %}year={{ request.GET.year }}&{% endif %}{% if request.GET.director %}director={{ request.GET.director }}&{% endif %}{% if request.GET.actors %}actors={{ request.GET.actors }}&{% endif %}{% if request.GET.name %}name={{ request.GET.name }}&{% endif %}page={{ page_obj.next_page_number }}">&#8250;</a>
+            <a href="?{% if request.GET.title %}title={{ request.GET.title }}&{% endif %}{% if request.GET.year %}year={{ request.GET.year }}&{% endif %}{% if request.GET.director %}director={{ request.GET.director }}&{% endif %}{% if request.GET.actors %}actors={{ request.GET.actors }}&{% endif %}{% if request.GET.name %}name={{ request.GET.name }}&{% endif %}page={{ page_obj.paginator.num_pages }}">&raquo;</a>
+        {% else %}
+            <span class="disabled">&#8250;</span>
+            <span class="disabled">&raquo;</span>
+        {% endif %}
+    </span>
+</div>

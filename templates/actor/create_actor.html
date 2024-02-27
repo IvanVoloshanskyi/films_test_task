@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section class="create-actor global-padding">
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Add Actor</button>
+            <a href="{% url 'film:actors:actors-list' %}">
+                <button type="button">Cancel</button>
+            </a>
+        </form>
+    </section>
+{% endblock %}

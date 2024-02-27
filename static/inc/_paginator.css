@@ -1,0 +1,45 @@
+/* Контейнер пагінатора */
+.pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Клас для посилань на сторінки */
+.pagination a, .disabled {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 8px 16px;
+    border: 2px solid #4CAF50;
+    border-radius: 10px;
+    background-color: #fff;
+    color: #4CAF50;
+    font-size: 16px;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.disabled {
+    background-color: #ddd; /* Зміна фонового кольору при наведенні */
+    color: #333; /* Зміна кольору тексту при наведенні */
+    border-color: #888; /* Зміна коліру межі при наведенні */
+}
+
+/* Клас для активної сторінки */
+.pagination .active {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+/* Клас для стрілок */
+.pagination .arrow {
+    font-size: 20px;
+}
+
+
+/* Стилі для ефекту ховер */
+.pagination a:hover {
+    background-color: #ddd; /* Зміна фонового кольору при наведенні */
+    color: #333; /* Зміна кольору тексту при наведенні */
+    border-color: #888; /* Зміна коліру межі при наведенні */
+}

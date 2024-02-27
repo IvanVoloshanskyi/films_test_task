@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <section class="actors-list global-padding">
+        <form class="filter-form" method="get">
+
+            <div class="form-group">
+                <label for="id_actors">Directors:</label>
+                {{ filter.form.name }}
+            </div>
+
+            <button type="submit" class="btn btn-primary">Apply filters</button>
+
+            <a href="{% url 'film:director:director-create' %}">
+                <button type="button">Add Director</button>
+            </a>
+        </form>
+
+
+        <div class="actors-wrapper">
+            <div class="film-card">
+                {% for director in directors %}
+
+                    <div class="film-info">
+                        <div class="film-text">
+                            <ul class="actors-list">
+                                <li class="actor">
+                                    {{ director.name }}
+                                </li>
+                                <div class="film-actions">
+                                    <a href="{% url 'film:director:director-delete' director.pk %}" class="delete-film-link">
+                                        <button class="delete-film-btn" type="submit">Delete Director</button>
+                                    </a>
+                                    <a href="{% url 'film:director:director-update' director.pk %}" class="edit-film-link">
+                                        <button class="edit-film-btn" type="submit">Edit Director</button>
+                                    </a>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% include 'inc/_paginator.html' %}
+    </section>
+
+{% endblock %}
