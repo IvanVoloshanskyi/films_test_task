@@ -16,21 +16,25 @@ class Command(BaseCommand):
             response = requests.get(url)
             if response.status_code == 200:
                 data = response.json()
-                director, _ = Director.objects.get_or_create(name=data['Director'])
-                movie, created = Movie.objects.get_or_create(
-                    title=data['Title'],
-                    year=data['Year'],
-                    director=director,
-                )
+                director_name = data.get('Director')  # Отримання значення за ключем 'Director'
+                if director_name:
+                    director, _ = Director.objects.get_or_create(name=director_name)
+                    movie, created = Movie.objects.get_or_create(
+                        title=data['Title'],
+                        year=data['Year'],
+                        director=director,
+                    )
 
-                actors_names = data['Actors'].split(', ')
-                for actor_name in actors_names:
-                    actor, _ = Actor.objects.get_or_create(name=actor_name)
-                    movie.actors.add(actor)
+                    actors_names = data['Actors'].split(', ')
+                    for actor_name in actors_names:
+                        actor, _ = Actor.objects.get_or_create(name=actor_name)
+                        movie.actors.add(actor)
 
-                if created:
-                    self.stdout.write(self.style.SUCCESS(f"Added movie: {movie.title}"))
+                    if created:
+                        self.stdout.write(self.style.SUCCESS(f"Added movie: {movie.title}"))
+                    else:
+                        self.stdout.write(self.style.WARNING(f"Movie already exists: {movie.title}"))
                 else:
-                    self.stdout.write(self.style.WARNING(f"Movie already exists: {movie.title}"))
+                    self.stderr.write(self.style.ERROR(f"Director name not found in data for movie with ID: {movie_id}"))
             else:
                 self.stderr.write(self.style.ERROR(f"Failed to fetch data for movie with ID: {movie_id}"))
